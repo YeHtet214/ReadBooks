@@ -1,0 +1,81 @@
+<%- include('partials/header.ejs') %>
+        <header>
+            <h1>Yair Reading</h1>
+            <div class="search-bar drop-down">
+                <input type="text" id="search" placeholder="Search Book..." >
+                <ul></ul>
+            </div>
+        </header>
+        <main>
+            <section id="intro">
+                <h2>Books I've Read</h2>
+                <p>
+                    Tiny summary but detailed notes for each. Use the ISBN number to
+                    find it from your local library or anywhere else. This page will
+                    constantly update as I read more, so bookmark it if you want to
+                    check back in a few months. Sorted with my top recommendations
+                    up top. Sort by title, newest, or best.
+                </p>
+            </section>
+            <section id="book-list">
+                <ul id="books-list">
+                    <% if (books.length) { %>
+                        <% books.forEach(book => { %>
+                            <li class="book">
+                                <a href="/detail/<%= book.id %>" class="cover-img-a">
+                                    <img src=<%= book.cover_m %> alt="Cover" class="cover-img" />
+                                </a>
+                                <form action="/update" method="POST">
+                                    <h3 class="title">
+                                        <%= book.title %>
+                                    </h3>
+                                    <p id="book-detail<%= book.id %>"><%= book.preview %></p>
+                                    <textarea name="update_detail"  id="edit-paragraph<%= book.id %>" rows="3" cols="20" class="hidden" width="100%" >
+                                        <%= book.preview %>
+                                    </textarea>
+                                    <input type="hidden" name="bookId" value="<%= book.id %>" />
+                                    <button type="button" id="edit-btn<%= book.id %>" class="edit-btn" onclick="handler('<%= book.id %>')">
+                                        Edit
+                                    </button>
+                                    <div id="submit-edit<%= book.id %>" class="hidden edit-actionBtn-gp">
+                                        <input type="submit" name="edit" value="Submit" />
+                                        <input type="button" name="cancel_edit" value="Cancel" onclick="setInitial('<%= book.id %>')"  >
+                                    </div>
+                                    <input type="submit" id="delete<%= book.id %>" value="Remove" name="delete" />
+                                </form>
+                            </li>
+                        <% }) %>
+                    <% } else { %>
+                    <h2>There is no book I've READ!</h2>
+                    <% } %>
+                </ul>
+            </section>
+
+            <section id="new-book">
+                <input type="checkbox" id="checker" >
+
+                <div class="action">
+                    <em>If you read more out of the list recently!</em>
+                    <button id="add-book-btn">
+                        <label for="checker">Add Book</label>
+                    </button>
+                </div>
+                <div class="add-form">
+                    <form action="/add" method="POST" id="add-book-form">
+                        <input type="hidden" name="bookData" id="bookData">
+                        <label for="checker" onclick="selectSuggestedBook()">
+                            <span class="shutter"></span>
+                        </label>
+                        <label for="book-title"><i>Please Enter the title of the Book</i></label>
+                        <div class="drop-down">
+                            <input type="text" id="add-book" name="add_book" autofocus >
+                            <ul></ul>
+                        </div>
+                        <button type="submit" id="add-book-submit" disabled>Ok</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+<%- include('partials/footer.ejs') %>
+
+

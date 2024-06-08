@@ -1,0 +1,26 @@
+<%- include('partials/header.ejs') %>
+        <div class="container detail">
+            <img src=<%= book.cover_l %> class="detail-cover-img cover-img" alt="Book Cover Image">
+            <h1 class="detail-book-title"><%= book.title %></h1>
+            <div class="author-info">
+                <img src="<%= book.author_key %>" alt="Author Img">
+                <h4><%= book.author_name %></h4>
+            </div>
+            <form action="/update" method="POST">
+                <p id="book-detail<%= book.id %>"><%= book.preview %></p>
+                <textarea name="update_detail"  id="edit-paragraph<%= book.id %>" class="hidden" width="100%" >
+                    <%= book.preview %>
+                </textarea>
+                <input type="hidden" name="bookId" value="<%= book.id %>" />
+                <button type="button" id="edit-btn<%= book.id %>" class="edit-btn" onclick="handler('<%= book.id %>')">
+                    Edit
+                </button>
+                <div id="submit-edit<%= book.id %>" class="hidden edit-actionBtn-gp">
+                    <input type="submit" name="edit" value="Submit Edit" />
+                    <input type="button" name="cancel_edit" value="Cancel Edit" onclick="setInitial('<%= book.id %>')"  >
+                </div>
+                
+                <input type="submit" id="delete<%= book.id %>" value="Delete" name="delete" />
+            </form>
+        </div>
+<%- include('partials/footer.ejs') %>
