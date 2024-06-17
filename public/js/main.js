@@ -17,7 +17,6 @@ function handler(id) {
 }
 
 function setInitial(id) {
-    console.log(id)
     document
         .getElementById(`book-detail${id}`)
         .removeAttribute("class", "hidden");
@@ -33,6 +32,18 @@ function setInitial(id) {
     document
         .getElementById(`delete${id}`)
         .removeAttribute("class", "hidden");
+}
+
+function toogleLabel(input) {
+    const parentFormGpTag = input.parentElement;
+    const label = parentFormGpTag.querySelector("label");
+    if (label.classList.contains("focused")) {
+        if (!input.value) {
+            label.classList.remove("focused");
+            return;
+        }
+    }
+    label.classList.add("focused");
 }
 
 const searchUlParentTag = document.querySelector('#search + ul');
@@ -81,6 +92,7 @@ function eventHandler(target) {
     }
 }
 
+// To get the books from existing database
 async function searchBook(query, targetId) {
     const url = 'http://localhost:3000/getBooks';
 
@@ -96,6 +108,7 @@ async function searchBook(query, targetId) {
     updateUI(targetId);
 }
 
+// To list the books returned from api call
 async function addBook(query, targetId) {
     const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&fields=title,author_name,author_key,isbn,first_sentence&limit=5`;
 
@@ -105,7 +118,6 @@ async function addBook(query, targetId) {
                             .catch(err => console.log(err.message));
 
     updateUI(targetId);
-    console.log(suggestedBookList);
 }
 
 async function updateUI(targetId) {

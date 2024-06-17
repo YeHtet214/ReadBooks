@@ -42,6 +42,16 @@ section {
     margin-bottom: 5rem;
 }
 
+.primary-btn{
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: 1px solid red;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: brown;
+    color: white;
+}
+
 /* Global Style End */
 /* ************************** */
 
@@ -266,15 +276,7 @@ input[name="delete"] {
     flex: 1;
 }
 
-#new-book .add-form button {
-    padding: 0.5rem 1rem;
-    outline: none;
-    border: 1px solid red;
-    cursor: pointer;
-    border-radius: 3px;
-    background-color: brown;
-    color: white;
-}
+
 
 /* #new-book .add-form input {
     outline: none;
@@ -375,4 +377,51 @@ footer {
     color: #111;
     border: 1px solid #111;
     background-color: #f2f2f2;
+}
+
+/* Register Page  */
+#register-container {
+    padding: 10vw;
+    background: #f2f2f2;
+}
+
+#register-container form {
+    background: #fff;
+    padding: 2rem 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+#register-container form .form-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+#register-container form .form-group label {
+    position: absolute;
+    top: 50%;
+    left: 0.5rem;
+    transform: translate(0, -50%);
+    transition: all 0.1s ease-out;
+}
+
+#register-container form .form-group input {
+    width: 100%;
+    position: relative;
+    background-color: transparent;
+    z-index: 1;
+    outline: none;
+    border: 1px solid #a1a1a1;
+    border-radius: 2px;
+    padding: 0.35rem 0.5rem;
+}
+
+#register-container .form-group .focused {
+    top: 0;
+    left: 0;
+    transform: translate(0, -110%);
+}
+
+#register-container form .form-group:focus-within label {
+    
 }

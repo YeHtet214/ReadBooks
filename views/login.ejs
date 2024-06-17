@@ -1,0 +1,24 @@
+<%- include('partials/header.ejs') %>
+
+<div id="register-container">
+    <h1>Login To Your Account :)</h1>
+    <form action="/login" method="POST">
+        <div class="form-group">
+            <input type="text" id="username" name="username" onfocus="toogleLabel(this)" onblur="toogleLabel(this)">
+            <label for="username">Username</label>
+        </div>
+    
+        <div class="form-group">
+            <input type="password" id="password" name="password" onfocus="toogleLabel(this)" onblur="toogleLabel(this)">
+            <label for="password">password</label>
+        </div>
+    
+        <button type="submit" class="primary-btn">Login</button>
+        <p style="display: inline-block; margin-left: 1rem;">New to "Yair Reading"? <a href="/register">Register</a></p>
+    </form>
+
+</div>
+
+<%- include('partials/footer.ejs') %>
+
+
